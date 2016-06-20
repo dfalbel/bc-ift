@@ -36,3 +36,23 @@ for (cnpj in cong$cnpj) {
     }
   }
 }
+
+# Downlaod do 7024 --
+
+for (cnpj in cong$cnpj) {
+  for (ano in 2001 + 0:8) {
+    for (trimestre in 1:4) {
+      parametros <- list(
+        operacao  = "buscaquadro",
+        codquadro = 7024,
+        cnpj      = cnpj,
+        ano       = ano,
+        trimestre = trimestre
+      )
+      arq <- caminho_arq(7024, cnpj, ano, trimestre)
+      GET2(url, query = parametros, arq)
+      Sys.sleep(1)
+    }
+  }
+}
+
